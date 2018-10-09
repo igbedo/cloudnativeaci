@@ -1,1 +1,64 @@
 
+ Instructions to be applied inside a ubuntu virtual or physical
+machine:
+ Start a simple ubuntu container.
+ Update the list of package as the container without any
+reference to the default repositories
+ Install the net-tools package and do an ifconfig
+ Install iproute2 and do an ip address show  (or ip a s  for
+short). Conclusion?
+ Which kind of interface it is (which name should you use for
+the interface)? Check also the routing table. Start to make a
+drawing with the interface connected to the outside of the
+container.
+You can leave without stopping the container with ˆPˆQ. From
+the host, find the sibling interface and where is it connected
+to. Hint : numbering of interfaces are absolute (irrespective of
+ns)
+ From inside the container (re-attach with docker attach
+name_of_container  ...that you find with a docker ps ). Ping
+the gateway if your host/VM and check with an watch
+iptables -L -v  which iptables are used for the FILTER table
+and a watch iptables -L -v -t nat  for the NAT table.
+
+ Start a container with an exposed port like 80:
+docker run ?it ??name ubuntu ?p80 ubuntu /bin/bash
+ Check the exposed port with docker port ubuntu  or docker
+ps
+ Check the iptables rule
+ Check what happens with a netcat on the correct port (nc
+localhost exposed_port -v ). You need to be in verbose
+mode
+ Wait a minute: there was no active web server and still, you
+managed to establish the TCP connection. Convince yourself
+with a wget or curl that it is the case.
+ Do a simple ps aux | grep docker  and netstat -tn  to
+understand what happens.
+
+LAB 2
+Step 1 : create two docker nodes with the Vagrant files below and at start-up,
+attach them to your ethernet card:
+http://www.i3s.unice.fr/~urvoy/docs/VICC/two_VM_with_docker.tar
+Step 2 : Start a service in a swarm:
+Initialize swarm in Docker1 host:
+docker swarm init ??advertise?addr 10.0.0.1
+Attach Docker2 by applying the provided command in the return message
+of the init
+Create overlay:
+docker network create ??driver overlay my?overlay
+Check the two nodes are availble:
+docker node ls
+Launch an alpine image that pings docker.com, connecting it to your
+overlay
+docker service create ??network=my?overlay ??replicas 2 ??name vicc alpine
+ping docker.com
+
+
+ Step 3 :
+ Check the IPs of the two containers with an exec command
+from docker – see next slide
+ launch a ping from one container one one node to a container
+in a different node using the exec command
+ visualize the packets with tcpdump on the other host on the
+interface to which the swarm was associated )  the interface
+bridge on your ethernet card
