@@ -1,4 +1,4 @@
-# Fundamentals of Microservices course page 
+# CloudNative and ACI course page 
 
 This site contains the content and labs for the Fundamentals of Istio course. 
 
