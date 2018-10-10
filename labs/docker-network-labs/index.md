@@ -56,6 +56,8 @@ Try another command.
 
 ```
 $ docker run alpine /bin/sh
+
+```
 Wait, nothing happened! Is that a bug? Well, no. These interactive shells will exit after running any scripted commands, unless they are run in an interactive terminal - so for this example to not exit, you need to 
 
 ```
@@ -98,16 +100,18 @@ That concludes a whirlwind tour of the docker run command which would most likel
 In the last section, you saw a lot of Docker-specific jargon which might be confusing to some. So before you go further, let's clarify some terminology that is used frequently in the Docker ecosystem.
 
 Images - The file system and configuration of our application which are used to create containers. To find out more about a Docker image, run docker inspect alpine. In the demo above, you used the docker pull command to download the alpine image. When you executed the command docker run hello-world, it also did a docker pull behind the scenes to download the hello-world image.
+
 Containers - Running instances of Docker images — containers run the actual applications. A container includes an application and all of its dependencies. It shares the kernel with other containers, and runs as an isolated process in user space on the host OS. You created a container using docker run which you did using the alpine image that you downloaded. A list of running containers can be seen using the docker ps command.
+
 Docker daemon - The background service running on the host that manages building, running and distributing Docker containers.
+
 Docker client - The command line tool that allows the user to interact with the Docker daemon.
-Docker Store - A registry of Docker images, where you can find trusted and enterprise ready containers, plugins, and Docker editions. You'll be using this later in this tutorial.
+Docker Store - A registry of Docker images, where you can find trusted and enterprise ready containers, plugins, and Docker editions.
 
 
 
 # DOCKER NETWORKING BASICS
 
-Time: Approximately 10 minutes
 
 In this lab you'll look at the most basic networking components that come with a fresh installation of Docker.
 
@@ -117,7 +121,8 @@ Step 1 - The docker network command
 Step 2 - List networks
 Step 3 - Inspect a network
 Step 4 - List network driver plugins
-Prerequisites
+
+### Prerequisites
 You will need all of the following to complete this lab:
 
 A Linux-based Docker Host running Docker 1.12 or higher
@@ -129,7 +134,7 @@ Run a simple docker network command from any of your lab machines.
 ```
 $ docker network
 
-```
+
 Usage:  docker network COMMAND
 
 ##Manage Docker networks
@@ -145,6 +150,7 @@ Commands:
   ls          List networks
   rm          Remove one or more networks
 
+```
 Run 'docker network COMMAND --help' for more information on a command.
 The command output shows how to use the command as well as all of the docker network sub-commands. As you can see from the output, the docker network command allows you to create new networks, list existing networks, inspect networks, and remove networks. It also allows you to connect and disconnect containers from networks.
 
