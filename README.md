@@ -14,7 +14,7 @@ Lab 2: https://github.com/plusn-nuri/microservice-basics
 
 Lab 3: [Deploy Microservices with Compose](labs/03-compose) 
 
-Lab 4: [Docker Networks](labs/docker-networks) 
+Lab 4: [Docker Networks](labs/docker-network-labs/index.md) 
 
 ## Day 2
 
