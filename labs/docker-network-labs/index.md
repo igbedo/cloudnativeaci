@@ -4,25 +4,25 @@ In this section, you are going to run an Alpine Linux container (a lightweight l
 
 To get started, let's run the following in our terminal:
 
-...
+```
 $ docker pull alpine
-...
+```
 
 
 The pull command fetches the alpine image from the Docker registry and saves it in our system. You can use the docker images command to see a list of all images on your system.
 
-...
+```
 $ docker images
 REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 alpine                  latest              c51f86c28340        4 weeks ago         1.109 MB
 hello-world             latest              690ed74de00f        5 months ago        960 B
-...
+```
 
 ### 1.1 Docker Run
 
 Great! Let's now run a Docker container based on this image. To do that you are going to use the docker run command.
 
-...
+```
 $ docker run alpine ls -l
 total 48
 drwxr-xr-x    2 root     root          4096 Mar  2 16:20 bin
@@ -33,7 +33,7 @@ drwxr-xr-x    5 root     root          4096 Mar  2 16:20 lib
 ......
 ......
 
-...
+```
 
 What happened? Behind the scenes, a lot of stuff happened. When you call run,
 
@@ -45,28 +45,28 @@ When you run docker run alpine, you provided a command (ls -l), so Docker starte
 
 Let's try something more exciting.
 
-...
+```
 $ docker run alpine echo "hello from alpine"
 hello from alpine
-...
+```
 
 OK, that's some actual output. In this case, the Docker client dutifully ran the echo command in our alpine container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast!
 
 Try another command.
 
-...
+```
 $ docker run alpine /bin/sh
 Wait, nothing happened! Is that a bug? Well, no. These interactive shells will exit after running any scripted commands, unless they are run in an interactive terminal - so for this example to not exit, you need to 
 
-...
+```
 docker run -it alpine /bin/sh.
-...
+```
 
 You are now inside the container shell and you can try out a few commands like ls -l, uname -a and others. Exit out of the container by giving the exit command.
 
 Ok, now it's time to see the docker ps command. The docker ps command shows you all containers that are currently running.
 
-...
+```
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 Since no containers are running, you see a blank line. Let's try a more useful variant: docker ps -a
@@ -77,18 +77,18 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 a6a9d46d0b2f        alpine             "echo 'hello from alp"    6 minutes ago       Exited (0) 6 minutes ago                        lonely_kilby
 ff0a5c3750b9        alpine             "ls -l"                   8 minutes ago       Exited (0) 8 minutes ago                        elated_ramanujan
 c317d0a9e3d2        hello-world         "/hello"                 34 seconds ago      Exited (0) 12 minutes ago                       stupefied_mcclintock
-...
+```
 
 What you see above is a list of all containers that you ran. Notice that the STATUS column shows that these containers exited a few minutes ago. You're probably wondering if there is a way to run more than just one command in a container. Let's try that now:
 
-...
+```
 $ docker run -it alpine /bin/sh
 / # ls
 bin      dev      etc      home     lib      linuxrc  media    mnt      proc     root     run      sbin     sys      tmp      usr      var
 / # uname -a
 Linux 97916e8cb5dc 4.4.27-moby #1 SMP Wed Oct 26 14:01:48 UTC 2016 x86_64 Linux
 
-...
+```
 
 Running the run command with the -it flags attaches us to an interactive tty in the container. Now you can run as many commands in the container as you want. Take some time to run your favorite commands.
 
@@ -126,8 +126,10 @@ The docker network command is the main command for configuring and managing cont
 
 Run a simple docker network command from any of your lab machines.
 
+```
 $ docker network
 
+```
 Usage:  docker network COMMAND
 
 ##Manage Docker networks
@@ -149,11 +151,14 @@ The command output shows how to use the command as well as all of the docker net
 Step 2: List networks
 Run a docker network ls command to view existing container networks on the current Docker host.
 
+```
 $ docker network ls
 NETWORK ID          NAME                DRIVER              SCOPE
 1befe23acd58        bridge              bridge              local
 726ead8f4e6b        host                host                local
 ef4896538cc7        none                null                local
+
+```
 The output above shows the container networks that are created as part of a standard installation of Docker.
 
 New networks that you create will also show up in the output of the docker network ls command.
@@ -165,6 +170,7 @@ The docker network inspect command is used to view network configuration details
 
 Use docker network inspect to view configuration details of the container networks on your Docker host. The command below shows the details of the network called bridge.
 
+```
 $ docker network inspect bridge
 [
     {
@@ -196,6 +202,8 @@ $ docker network inspect bridge
         "Labels": {}
     }
 ]
+
+```
 NOTE: The syntax of the docker network inspect command is docker network inspect <network>, where <network> can be either network name or network ID. In the example above we are showing the configuration details for the network called "bridge". Do not confuse this with the "bridge" driver.
 
 Step 4: List network driver plugins
@@ -203,6 +211,7 @@ The docker info command shows a lot of interesting information about a Docker in
 
 Run a docker info command on any of your Docker hosts and locate the list of network plugins.
 
+```
 $ docker info
 Containers: 0
  Running: 0
@@ -218,3 +227,5 @@ Plugins:
 Swarm: inactive
 Runtimes: runc
 <Snip>
+
+```
