@@ -322,7 +322,7 @@ We can see that it is “Active” for its Availability attribute.
 
 ### Remove the Service
 You can simply use the service rm command as shown below:
-
+```
 docker@manager1:~$ docker service rm web
 web
 docker@manager1:~$ docker service ls
@@ -330,7 +330,7 @@ ID NAME REPLICAS IMAGE COMMAND
 docker@manager1:~$ docker service inspect web
 []
 Error: no such service: web
-
+```
 ### Applying Rolling Updates
 This is straight forward. In case you have an updated Docker image to roll out to the nodes, all you need to do is fire an service update command.
 
