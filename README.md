@@ -15,15 +15,17 @@ Lab 2: https://github.com/plusn-nuri/microservice-basics
 Lab 3: [Deploy Microservices with Compose](labs/03-compose) 
 
 Lab 4: [Docker Networks](labs/docker-network-labs/index.md)
+Lab 5: [Docker Swarm](labs/docker-swarm/index.md)
+
 
 ## Day 2
 
 ### Labs 
 
-Lab 5: [Deploy Kubernetes with kubeadm and weave CNI PDF](labs/k8s-network-labs/Install%20Kubernetes%20on%20AWS.pdf)  or [Deploy Kubernetes with kubeadm and weave CNI text](labs/k8s-net-labs/index.md)
+Lab 6: [Deploy Kubernetes with kubeadm and weave CNI PDF](labs/k8s-network-labs/Install%20Kubernetes%20on%20AWS.pdf)  or [Deploy Kubernetes with kubeadm and weave CNI text](labs/k8s-net-labs/index.md)
 
 
-Lab 6: [Deploy Kubernetes Pods](labs/04-pods)
+Lab 7: [Deploy Kubernetes Pods](labs/04-pods)
 
-Lab 6: [Deploy Multi-container application](labs/05-multi)
+Lab 8: [Deploy Multi-container application](labs/05-multi)
 
