@@ -1,10 +1,11 @@
 
-### 1.0 Running your first container
+# 1.0 Running your first container
 In this section, you are going to run an Alpine Linux container (a lightweight linux distribution) on your system and get a taste of the docker run command.
 
 To get started, let's run the following in our terminal:
 
 $ docker pull alpine
+
 Note: Depending on how you've installed docker on your system, you might see a permission denied error after running the above command. Try the commands from the Getting Started tutorial to verify your installation. If you're on Linux, you may need to prefix your docker commands with sudo. Alternatively you can create a docker group to get rid of this issue.
 
 The pull command fetches the alpine image from the Docker registry and saves it in our system. You can use the docker images command to see a list of all images on your system.
@@ -13,7 +14,8 @@ $ docker images
 REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 alpine                  latest              c51f86c28340        4 weeks ago         1.109 MB
 hello-world             latest              690ed74de00f        5 months ago        960 B
-1.1 Docker Run
+
+###1.1 Docker Run
 Great! Let's now run a Docker container based on this image. To do that you are going to use the docker run command.
 
 $ docker run alpine ls -l
@@ -37,6 +39,7 @@ Let's try something more exciting.
 
 $ docker run alpine echo "hello from alpine"
 hello from alpine
+
 OK, that's some actual output. In this case, the Docker client dutifully ran the echo command in our alpine container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast!
 
 Try another command.
