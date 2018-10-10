@@ -30,3 +30,6 @@ Lab 7: [Deploy Kubernetes Pods](labs/04-pods)
 
 Lab 8: [Deploy Multi-container application](labs/05-multi)
 
+Lab 8: [Kubernetes Networking](https://github.com/igbedo/kubernetes-lab-tutorial)
+
+
