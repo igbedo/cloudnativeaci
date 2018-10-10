@@ -1,4 +1,4 @@
-## Need for Container Orchestration System?
+### Need for Container Orchestration System?
 To keep this simple, imagine that you had to run hundreds of containers. You can easily see that if they are running in a distributed mode, there are multiple features that you will need from a management angle to make sure that the cluster is up and running, is healthy and more.
 
 Some of these necessary features include:
@@ -15,17 +15,18 @@ and more…
 
 Let us look at how we can do some of that using Docker Swarm. The Docker Documentation and tutorial for trying out Swarm mode has been excellent.
 
-## Master node
+### Master node
 Note down the IP Address of the master node (your first Ip address)
 
 ssh -i k8slab.pem ubuntu@master-ip
 
-##Our Swarm Cluster
+### Swarm Cluster
 Now that our machines are setup, we can proceed with setting up the Swarm.
 
-
+```
 $ docker swarm init --advertise-addr MANAGER_IP
-On my machine, it looks like this:
+```
+It looks like this:
 ```
 docker@manager1:~$ docker swarm init — advertise-addr 192.168.1.8
 Swarm initialized: current node (5oof62fetd4gry7o09jd9e0kf) is now a manager.
@@ -56,10 +57,12 @@ Stay in the SSH session itself for manager1.
 To find out what docker swarm command to use to join as a node, you will need to use the join-token <role> command.
 
 To find out the join command for a worker, fire the following command:
+
 ```
 docker@manager1:~$ docker swarm join-token worker
 ```
 To add a worker to this swarm, run the following command:
+
 ```
 docker swarm join \
  — token SWMTKN-1–5mgyf6ehuc5pfbmar00njd3oxv8nmjhteejaald3yzbef7osl1-ad7b1k8k3bl3aa3k3q13zivqd \
@@ -217,7 +220,7 @@ Try out a curl to any of the Docker Machine IPs (manager1 or worker1/2) or hit t
 
 Ideally you would put the Docker Swarm service behind a Load Balancer.
 
-###Scaling up and Scaling down
+### Scaling up and Scaling down
 This is done via the docker service scale command. We currently have 5 containers running. Let us bump it up to 8 as shown below by executing the command on the manager1 node.
 
 ```
@@ -307,7 +310,7 @@ Engine Labels:
 We can see that it is “Active” for its Availability attribute.
 ```
 
-###Remove the Service
+### Remove the Service
 You can simply use the service rm command as shown below:
 
 docker@manager1:~$ docker service rm web
