@@ -5,8 +5,8 @@ Log into all servers
 Run the following commands in a terminal
 
 ```
-chmod 600 /path/to/k8s-lab
-ssh -i /path/to/k8s-lab ubuntu@<server IP>
+chmod 600 /path/to/k8slab
+ssh -i /path/to/k8slab ubuntu@<server IP>
 
 ```
 
@@ -28,6 +28,8 @@ Install packages required for Kubernetes on all servers as the root user
 apt-get update && apt-get install -y apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
+```
+
 Create Kubernetes repository by running the following as one command.
 
 ```
@@ -43,8 +45,7 @@ apt-get update
 apt-get install -y kubelet=1.11.3-00 kubeadm=1.11.3-00 kubectl
 
 ```
-The kubelet is now restarting every few seconds, as it waits in a crashloop for kubeadm to
-tell it what to do.
+The kubelet is now restarting every few seconds, as it waits in a crashloop for kubeadm to tell it what to do.
 
 ### Initialize the Master
 Run the following command on the master node to initialize
