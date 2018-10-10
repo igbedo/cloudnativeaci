@@ -99,7 +99,7 @@ Running the run command with the -it flags attaches us to an interactive tty in 
 
 That concludes a whirlwind tour of the docker run command which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about run, use docker run --help to see a list of all flags it supports. As you proceed further, we'll see a few more variants of docker run.
 
-## 1.2 Terminology
+### 1.2 Terminology
 In the last section, you saw a lot of Docker-specific jargon which might be confusing to some. So before you go further, let's clarify some terminology that is used frequently in the Docker ecosystem.
 
 Images - The file system and configuration of our application which are used to create containers. To find out more about a Docker image, run docker inspect alpine. In the demo above, you used the docker pull command to download the alpine image. When you executed the command docker run hello-world, it also did a docker pull behind the scenes to download the hello-world image.
@@ -109,12 +109,12 @@ Containers - Running instances of Docker images — containers run the actual ap
 Docker daemon - The background service running on the host that manages building, running and distributing Docker containers.
 
 Docker client - The command line tool that allows the user to interact with the Docker daemon.
+
 Docker Store - A registry of Docker images, where you can find trusted and enterprise ready containers, plugins, and Docker editions.
 
 
 
 # DOCKER NETWORKING BASICS
-
 
 In this lab you'll look at the most basic networking components that come with a fresh installation of Docker.
 
@@ -129,6 +129,7 @@ Step 3 - Inspect a network
 Step 4 - List network driver plugins
 
 Step 1: The docker network command
+
 The docker network command is the main command for configuring and managing container networks.
 
 Run a simple docker network command from any of your lab machines.
@@ -154,9 +155,11 @@ Commands:
 
 ```
 Run 'docker network COMMAND --help' for more information on a command.
+
 The command output shows how to use the command as well as all of the docker network sub-commands. As you can see from the output, the docker network command allows you to create new networks, list existing networks, inspect networks, and remove networks. It also allows you to connect and disconnect containers from networks.
 
 Step 2: List networks
+
 Run a docker network ls command to view existing container networks on the current Docker host.
 
 ```
@@ -174,6 +177,7 @@ New networks that you create will also show up in the output of the docker netwo
 You can see that each network gets a unique ID and NAME. Each network is also associated with a single driver. Notice that the "bridge" network and the "host" network have the same name as their respective drivers.
 
 Step 3: Inspect a network
+
 The docker network inspect command is used to view network configuration details. These details include; name, ID, driver, IPAM driver, subnet info, connected containers, and more.
 
 Use docker network inspect to view configuration details of the container networks on your Docker host. The command below shows the details of the network called bridge.
@@ -220,6 +224,7 @@ docker network inspect <network>
 where <network> can be either network name or network ID. In the example above we are showing the configuration details for the network called "bridge". Do not confuse this with the "bridge" driver.
 
 Step 4: List network driver plugins
+
 The docker info command shows a lot of interesting information about a Docker installation.
 
 Run a docker info command on any of your Docker hosts and locate the list of network plugins.
