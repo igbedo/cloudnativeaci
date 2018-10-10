@@ -71,7 +71,11 @@ Now configure server so you can interact with Kubernetes as the unprivileged use
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/configRun following on the master to enable IP forwarding to IPTables.
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+Run following on the master to enable IP forwarding to IPTables.
+
+```
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 
 ```
@@ -96,7 +100,7 @@ output.
 
 ```
 sudo kubeadm join --token <token> <IP>:6443 --discovery-token-ca-cert-hash <hash>
-
+```
 To confirm nodes have joined successfully log back into master and run
 
 ```
