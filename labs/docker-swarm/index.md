@@ -18,15 +18,19 @@ Let us look at how we can do some of that using Docker Swarm. The Docker Documen
 ### Master node
 Note down the IP Address of the master node (your first Ip address)
 
+```
 ssh -i k8slab.pem ubuntu@master-ip
 
+```
 ### Swarm Cluster
 Now that our machines are setup, we can proceed with setting up the Swarm.
 
 ```
 $ docker swarm init --advertise-addr MANAGER_IP
+
 ```
 It looks like this:
+
 ```
 docker@manager1:~$ docker swarm init — advertise-addr 192.168.1.8
 Swarm initialized: current node (5oof62fetd4gry7o09jd9e0kf) is now a manager.
@@ -36,6 +40,7 @@ docker swarm join \
  192.168.1.8:2377
 To add a manager to this swarm, run ‘docker swarm join-token manager’ and follow the instructions.
 docker@manager1:~$
+
 ```
 Great!
 
@@ -47,8 +52,11 @@ At this point you can see your Swarm status by firing the following command as s
 docker@manager1:~$ docker node ls
 ID              HOSTNAME STATUS AVAILABILITY MANAGER STATUS
 5oof62fetd..*   manager1 Ready  Active       Leader
-This shows that there is a single node so far i.e. manager1 and it has the value of Leader for the MANAGER column.
+
 ```
+
+This shows that there is a single node so far i.e. manager1 and it has the value of Leader for the MANAGER column.
+
 Stay in the SSH session itself for manager1.
 
 
@@ -60,6 +68,7 @@ To find out the join command for a worker, fire the following command:
 
 ```
 docker@manager1:~$ docker swarm join-token worker
+
 ```
 To add a worker to this swarm, run the following command:
 
@@ -92,13 +101,14 @@ Now that we know how to check the command to join as a worker, we can use that t
 ```
 docker@manager1:~$ docker node ls
 docker@manager1:~$
+
 ```
 You should see 3 nodes, one as the manager (manager1) and the other 2 as workers.
 
 Run the command
 
 ```
-docker info 
+$ docker info 
 ```
 and zoom into the Swarm section to check out the details for our Swarm.
 ```
