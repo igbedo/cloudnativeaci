@@ -38,8 +38,11 @@ drwxr-xr-x    5 root     root          4096 Mar  2 16:20 lib
 What happened? Behind the scenes, a lot of stuff happened. When you call run,
 
 The Docker client contacts the Docker daemon
+
 The Docker daemon checks local store if the image (alpine in this case) is available locally, and if not, downloads it from Docker Store. (Since we have issued docker pull alpine before, the download step is not necessary)
+
 The Docker daemon creates the container and then runs a command in that container.
+
 The Docker daemon streams the output of the command to the Docker client
 When you run docker run alpine, you provided a command (ls -l), so Docker started the command specified and you saw the listing.
 
@@ -118,14 +121,13 @@ In this lab you'll look at the most basic networking components that come with a
 You will complete the following steps as part of this lab.
 
 Step 1 - The docker network command
+
 Step 2 - List networks
+
 Step 3 - Inspect a network
+
 Step 4 - List network driver plugins
 
-### Prerequisites
-You will need all of the following to complete this lab:
-
-A Linux-based Docker Host running Docker 1.12 or higher
 Step 1: The docker network command
 The docker network command is the main command for configuring and managing container networks.
 
@@ -210,7 +212,12 @@ $ docker network inspect bridge
 ]
 
 ```
-NOTE: The syntax of the docker network inspect command is docker network inspect <network>, where <network> can be either network name or network ID. In the example above we are showing the configuration details for the network called "bridge". Do not confuse this with the "bridge" driver.
+NOTE: The syntax of the docker network inspect command is 
+```
+docker network inspect <network>
+
+```
+where <network> can be either network name or network ID. In the example above we are showing the configuration details for the network called "bridge". Do not confuse this with the "bridge" driver.
 
 Step 4: List network driver plugins
 The docker info command shows a lot of interesting information about a Docker installation.
