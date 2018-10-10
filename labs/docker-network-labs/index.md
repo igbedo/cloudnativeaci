@@ -1,5 +1,5 @@
 
- 1.0 Running your first container
+### 1.0 Running your first container
 In this section, you are going to run an Alpine Linux container (a lightweight linux distribution) on your system and get a taste of the docker run command.
 
 To get started, let's run the following in our terminal:
@@ -80,7 +80,7 @@ Docker Store - A registry of Docker images, where you can find trusted and enter
 
 
 
-DOCKER NETWORKING BASICS
+# DOCKER NETWORKING BASICS
 
 Time: Approximately 10 minutes
 
@@ -105,7 +105,7 @@ $ docker network
 
 Usage:  docker network COMMAND
 
-Manage Docker networks
+##Manage Docker networks
 
 Options:
       --help   Print usage
