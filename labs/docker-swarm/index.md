@@ -60,7 +60,7 @@ This shows that there is a single node so far i.e. manager1 and it has the value
 Stay in the SSH session itself for manager1.
 
 
-##Joining as Worker Node
+### Joining as Worker Node
 
 To find out what docker swarm command to use to join as a node, you will need to use the join-token <role> command.
 
@@ -79,7 +79,7 @@ docker swarm join \
 
 docker@manager1:~$
 ```
-##Joining as Manager Node
+### Joining as Manager Node
 To find out the the join command for a manager, fire the following command:
 
 ```
@@ -95,7 +95,7 @@ Notice in both the above cases, that you are provided a token and it is joining 
 
 Keep the SSH to manager1 open. And fire up other command terminals for working with other worker docker machines.
 
-###Adding Worker Nodes to our Swarm
+### Adding Worker Nodes to our Swarm
 Now that we know how to check the command to join as a worker, we can use that to do a SSH into each of the worker Docker machines and then fire the respective join command in them.
 
 ```
@@ -139,7 +139,7 @@ Since I am running the docker info command on the manager1 itself, it shows the 
 
 The Raft section is the Raft consensus algorithm that is used. 
 
-###Create a Service
+### Create a Service
 Now that we have our swarm up and running, it is time to schedule our containers on it. This is the whole beauty of the orchestration layer. We are going to focus on the app and not worry about where the application is going to run.
 
 All we are going to do is tell the manager to run the containers for us and it will take care of scheduling out the containers, sending the commands to the nodes and distributing it.
@@ -275,7 +275,7 @@ b8* web.7 nginx manager1 Running       Running 2 minutes ago
 0k* web.8 nginx worker1  Running       Running 3 minutes ago
 docker@manager1:~$
 ```
-###Inspecting nodes
+### Inspecting nodes
 You can inspect the nodes anytime via the docker node inspect command.
 
 For example if you are already on the node (for example manager1) that you want to check, you can use the name self for the node.
