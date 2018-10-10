@@ -19,8 +19,8 @@ Lab 4: [Docker Networks](labs/docker-network-labs/index.md)
 ## Day 2
 
 ### Labs 
-
-Lab 5: [Deploy Kubernetes Pods](labs/04-pods)
+Lab 5: [Deploy Kubernetes with kubeadm and weave CNI](labs/04-pods)
+Lab 6: [Deploy Kubernetes Pods](labs/04-pods)
 
 Lab 6: [Deploy Multi-container application](labs/05-multi)
 
