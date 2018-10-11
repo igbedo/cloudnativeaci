@@ -26,10 +26,24 @@ Lab 5: [Docker Swarm](labs/docker-swarm/index.md)
 Lab 6: [Deploy Kubernetes with kubeadm and weave CNI PDF](labs/k8s-network-labs/Install%20Kubernetes%20on%20AWS.pdf)  or [Deploy Kubernetes with kubeadm and weave CNI text](labs/k8s-net-labs/index.md)
 
 
-Lab 7: [Deploy Kubernetes Pods](labs/04-pods)
+Lab 7: [Deploy Kubernetes Pods](labs/04-pods/index.md)
 
-Lab 8: [Deploy Multi-container application](labs/05-multi)
+Lab 8: [Deploy Multi-container application](labs/05-multi/index.md)
 
-Lab 8: [Kubernetes Networking](https://github.com/igbedo/kubernetes-lab-tutorial/blob/master/content/network.md#pod-networking)
+Lab 9: [Kubernetes Networking](https://github.com/igbedo/kubernetes-lab-tutorial/blob/master/content/network.md#pod-networking)
+
+## Day 3
+
+### Labs 
+
+Lab 10: [Deploy Kubernetes with kubeadm and Contiv CNI](labs/contiv-deploy-labs/index.md)
+
+
+Lab 11: [Coniv Multi-node network](labs/contiv-network/index.md)
+
+Lab 12: [Contiv Policies](labs/contiv-policies/index.md)
+
+
+
 
 
