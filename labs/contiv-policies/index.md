@@ -28,7 +28,7 @@ Contiv Networking project provides policy based networking for Docker Containers
 ### Contiv Networking policy
 Contiv networking policy is specified in terms of business logic rather than Networking constraints. The policy is targeted towards clear division of responsibilities between Development and Operation teams.  Following picture from Contiv website illustrates the Contiv Networking policy model:
 
-Markup : ![picture alt](https://github.com/igbedo/cloudnativeaci/blob/master/labs/contiv1.png "Net policy Diagram")
+![picture alt](https://github.com/igbedo/cloudnativeaci/blob/master/labs/contiv1.png "Net policy Diagram")
 
 Following are some notes on the Contiv Networking policy:
 
@@ -99,7 +99,7 @@ Let's implement the following  business Policy details for an application:
 
 Following picture shows the Contiv object model for this application:
 
-Markup : ![picture alt](https://github.com/igbedo/cloudnativeaci/blob/master/labs/contiv21.png "Net policy Diagram")
+![picture alt](https://github.com/igbedo/cloudnativeaci/blob/master/labs/contiv21.png "Net policy Diagram")
 
 Following commands creates this application using “netctl” CLI:
 
