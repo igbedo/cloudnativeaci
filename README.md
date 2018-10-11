@@ -41,7 +41,7 @@ Lab 10: [Deploy Kubernetes with kubeadm and Contiv CNI](labs/contiv-deploy-labs/
 
 Lab 11: [Coniv Multi-node network](labs/contiv-network/index.md)
 
-Lab 12: [Contiv Policies](labs/05-multi)
+Lab 12: [Contiv Policies](labs/contiv-policies/index.md)
 
 
 
