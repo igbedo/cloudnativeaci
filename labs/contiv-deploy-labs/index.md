@@ -43,9 +43,10 @@ as root:
 curl -L -O https://github.com/contiv/install/releases/download/1.1.7/contiv-1.1.7.tgz
 tar xvzf contiv-1.1.7.tgz 
 cd contiv-1.1.7/
-
+```
 Install and Run Contiv using as parameter the private IP of the machine on which us running
 
+```
 ./install/k8s/install.sh -n <MACHINE_PRIVATE_IP>
 
 serviceaccount/contiv-netmaster unchanged
@@ -67,8 +68,6 @@ Please use the first run wizard or configure the setup as follows:
  For example, netctl net create -t default --subnet=20.1.1.0/24 -g 20.1.1.1 default-net
 
 =========================================================
-
-
  
  root@ip-172-31-19-85:~/contiv-1.1.7# kubectl get pods --all-namespaces
 NAMESPACE     NAME                                      READY   STATUS              RESTARTS   AGE
@@ -82,6 +81,7 @@ kube-system   kube-apiserver-ip-172-31-19-85            1/1     Running         
 kube-system   kube-controller-manager-ip-172-31-19-85   1/1     Running             0          4m
 kube-system   kube-proxy-5hgjf                          1/1     Running             0          5m
 kube-system   kube-scheduler-ip-172-31-19-85            1/1     Running             0          5m
+
 ``` 
 #### 4. Provide minimal configuration for Contiv, which includes the overlay network address
  COPY AND PASTE FROM THE OUTPUT OF PREVIOUS
