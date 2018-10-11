@@ -105,6 +105,8 @@ root@ip-172-31-19-85:~/contiv-1.1.7#
 
 ```
 #### 5. Access Contive dashboard at the MACHINE-PUBLIC-IP of the machine
+https://public-ip:10000
+login as admin/admin
 
 #### 6. Test by deploying a deployment object
 ```
