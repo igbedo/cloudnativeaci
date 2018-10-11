@@ -4,7 +4,7 @@ There are many solutions like Contiv such as Calico, Weave, OpenShift, OpenContr
 
 In this section, let's examine Contiv and Kubernetes overlay solutions.
 
-###Multi-host networking with Contiv
+### Multi-host networking with Contiv
 
 Let's spin up two pods on the two different hosts.
 
