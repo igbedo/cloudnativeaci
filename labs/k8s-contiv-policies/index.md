@@ -1,4 +1,4 @@
-## Chapter 1 - ICMP Policy
+## Section 1 - ICMP Policy
 
 In this section, we will create two groups epgA and epgB. We will create containers with respect to those groups. Then, by default, communication between the groups is allowed. So, we will create an ICMP deny policy and verify that we are not able to ping between those containers.
 
@@ -187,9 +187,10 @@ PING 10.1.1.2 (10.1.1.2): 56 data bytes
 3 packets transmitted, 0 packets received, 100% packet loss
 / # exit
 ```
-## Chapter 2 - TCP Policy
+## Section 2 - TCP Policy
 
 In this section, we will create a TCP deny policy as well as a selective TCP port allow policy.
+
 ```
 [vagrant@kubeadm-master ~]$ netctl policy rule-add -t TestTenant -d in --protocol tcp --port 0  --from-group epgA  --action deny policyAB 2
 [vagrant@kubeadm-master ~]$ netctl policy rule-add -t TestTenant -d in --protocol tcp --port 8001  --from-group epgA  --action allow --priority 10 policyAB 3
@@ -236,7 +237,7 @@ TCP window size: 85.3 KByte (default)
 [  4]  0.0- 0.0 sec  0.00 Bytes  0.00 bits/sec
 ^C/ # exit
 ```
-## Chapter 3 - Bandwidth Policy
+## Section 3 - Bandwidth Policy
 
 In this chapter, we will explore the bandwidth policy feature of Contiv. We will create a tenant, a network and some groups. Then we will attach a netprofile to one endpoint group and verify that the applied bandwidth policy works as expected.
 
