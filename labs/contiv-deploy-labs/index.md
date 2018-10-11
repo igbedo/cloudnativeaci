@@ -10,10 +10,9 @@ $sudo su -
 apt-get  update  &&  apt-get  install  -y  apt-transport-https
 
 curl  -s https://packages.cloud.google.com/apt/doc/apt-key.gpg |  apt-key  add  -
+
 cat  <<EOF >/etc/apt/sources.list.d/kubernetes.list
-
 deb http://apt.kubernetes.io/ kubernetes-xenial  main
-
 EOF
 
 apt-get  update
@@ -26,7 +25,8 @@ apt-get  install  -y  kubelet=1.11.3-00  kubeadm=1.11.3-00  kubectl
 kubeadm init --kubernetes-version=1.11.3 --service-cidr 10.254.0.0/16
 
 ```
-Wait for the output from the init process. It will look lik this:
+Wait for the output from the init process. The end of the meessage  will look lik this:
+
 ```
 mkdir -p $HOME/.kube
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -104,9 +104,9 @@ kube-system   kube-scheduler-ip-172-31-19-85            1/1     Running   0     
 root@ip-172-31-19-85:~/contiv-1.1.7# 
 
 ```
-Access Contive dashboard at the MACHINE-PUBLIC-IP of the machine
+#### 5. Access Contive dashboard at the MACHINE-PUBLIC-IP of the machine
 
-#### 5. Test by deploying a deployment object
+#### 6. Test by deploying a deployment object
 ```
 kubectl run nginx --image-nginx
 
