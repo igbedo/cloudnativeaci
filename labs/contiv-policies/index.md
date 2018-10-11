@@ -87,3 +87,156 @@ Following is a sample policy specified as JSON file. The policy template languag
 }
 
 ```
+
+## Creating Policies
+
+Let's implement the following  business Policy details for an application:
+
+
+* Clients can talk to webserver using secure(http) and unsecure(https) methods in “test” network.
+* Clients can talk to webserver using only secure method(https) in “prod” network.
+* This application is run in default tenant network.
+
+Following picture shows the Contiv object model for this application:
+
+Markup : ![picture alt](https://github.com/igbedo/cloudnativeaci/blob/master/labs/contiv21.png "Net policy Diagram")
+
+Following commands creates this application using “netctl” CLI:
+
+```
+# Network
+netctl net create test --subnet=10.1.1.0/24
+netctl net create prod --subnet=20.1.1.0/24
+
+# Create policy
+netctl policy create p1
+netctl policy rule-add p1 1 -g c1 -n test -direction=in -protocol=tcp -action=deny
+netctl policy rule-add p1 2 -g c1 -n test -direction=in -protocol=tcp -port=80 -action=allow -priority=10
+netctl policy rule-add p1 3 -g c1 -n test -direction=in -protocol=tcp -port=443 -action=allow -priority=10
+
+netctl policy create p2
+netctl policy rule-add p2 4 -g c2 -n prod -direction=in -protocol=tcp -action=deny
+netctl policy rule-add p2 5 -g c2 -n prod -direction=in -protocol=tcp -port=443 -action=allow -priority=10
+
+# Create group and associate with network and policy
+netctl group create test c1 
+netctl group create test web1 -policy=p1
+netctl group create prod c2
+netctl group create prod web2 -policy=p2
+
+# Create services
+docker run -d --net web1.test --name web1_1 --dns 10.1.1.2 nginx
+docker run -d --net web1.test --name web1_2 --dns 10.1.1.2 nginx
+docker run -ti --net c1.test --name c1_1 --dns 10.1.1.2 smakam/myubuntu:v3
+
+docker run -d --net web2.prod --name web2_1 --dns 20.1.1.2 nginx
+docker run -d --net web2.prod --name web2_2 --dns 20.1.1.2 nginx
+docker run -ti --net c2.prod --name c2_1 --dns 20.1.1.2 smakam/myubuntu:v3 bash
+
+```
+
+I have used “nginx” container for web service and “smakam/myubuntu:v3” container for client service. “smakam/myubuntu:v3” is inherited from “ubuntu” Container and it has network tools installed in addition.
+
+Let’s login to client Container “c1_1” and check that it is able to reach service “web1.test.default”. Following output shows that the ping request is getting load balanced between “web1_1.test.default” and “web1_2.test.default”.
+```
+# ping -c1 web1.test.default
+PING web1.test.default (10.1.1.5) 56(84) bytes of data.
+64 bytes from 10.1.1.5: icmp_seq=1 ttl=64 time=0.120 ms
+
+--- web1.test.default ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.120/0.120/0.120/0.000 ms
+# ping -c1 web1.test.default
+PING web1.test.default (10.1.1.6) 56(84) bytes of data.
+64 bytes from 10.1.1.6: icmp_seq=1 ttl=64 time=6.13 ms
+
+--- web1.test.default ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 6.137/6.137/6.137/0.000 ms
+```
+
+To check that the policy is working, lets login to “c1_1” service and check that only port 80 and 443 is open in “web1” service as specified by policy “p1”.
+```
+# nc -zvw 1 web1.test.default 79-81
+nc: connect to web1.test.default port 79 (tcp) timed out: Operation now in progress
+nc: connect to web1.test.default port 79 (tcp) timed out: Operation now in progress
+Connection to web1.test.default 80 port [tcp/http] succeeded!
+nc: connect to web1.test.default port 81 (tcp) timed out: Operation now in progress
+nc: connect to web1.test.default port 81 (tcp) timed out: Operation now in progress
+# nc -zvw 1 web1.test.default 442-444
+nc: connect to web1.test.default port 442 (tcp) timed out: Operation now in progress
+nc: connect to web1.test.default port 442 (tcp) timed out: Operation now in progress
+nc: connect to web1.test.default port 443 (tcp) failed: Connection refused
+nc: connect to web1.test.default port 443 (tcp) failed: Connection refused
+nc: connect to web1.test.default port 444 (tcp) timed out: Operation now in progress
+nc: connect to web1.test.default port 444 (tcp) timed out: Operation now in progress
+```
+As we can see above, only port 80 and 443 is open. We are getting connection refused for port 443 because we have not enabled the authentication scheme for https.
+
+To check that the policy is working, lets login to “c2_1” and check that only port 443 is open in “web2” service as specified by policy “p2”.
+```
+root@78871d2b3159:/# nc -zvw 1 web2.prod.default 79-81
+nc: connect to web2.prod.default port 79 (tcp) timed out: Operation now in progress
+nc: connect to web2.prod.default port 79 (tcp) timed out: Operation now in progress
+nc: connect to web2.prod.default port 80 (tcp) timed out: Operation now in progress
+nc: connect to web2.prod.default port 80 (tcp) timed out: Operation now in progress
+nc: connect to web2.prod.default port 81 (tcp) timed out: Operation now in progress
+nc: connect to web2.prod.default port 81 (tcp) timed out: Operation now in progress
+root@78871d2b3159:/# nc -zvw 1 web2.prod.default 442-444
+nc: connect to web2.prod.default port 442 (tcp) timed out: Operation now in progress
+nc: connect to web2.prod.default port 442 (tcp) timed out: Operation now in progress
+nc: connect to web2.prod.default port 443 (tcp) failed: Connection refused
+nc: connect to web2.prod.default port 443 (tcp) failed: Connection refused
+nc: connect to web2.prod.default port 444 (tcp) timed out: Operation now in progress
+nc: connect to web2.prod.default port 444 (tcp) timed out: Operation now in progress
+```
+Let’s look at tenants, networks, epgs, policies created using netctl:
+
+$ netctl tenant ls
+Name     
+------   
+default  
+
+$ netctl network list
+Tenant   Network  Nw Type  Encap type  Packet tag  Subnet        Gateway
+------   -------  -------  ----------  ----------  -------       ------
+default  test     data     vxlan       0           10.11.1.0/24  
+default  prod     data     vxlan       0           10.11.2.0/24 
+
+$ netctl group ls
+Tenant   Group        Network  Policies
+------   -----        -------  --------
+default  test_client  test     
+default  test_web     test     test_web-in
+default  prod_client  prod     
+default  prod_web     prod     prod_web-in
+
+$ netctl policy list
+Tenant   Policy
+------   ------
+default  test_web-in
+default  prod_web-in
+
+$ netctl policy rule-ls prod_web-in
+Incoming Rules:
+Rule  Priority  From EndpointGroup  From Network  From IpAddress  Protocol  Port  Action
+----  --------  ------------------  ------------  ---------       --------  ----  ------
+1     1                             prod          10.11.2.0/24    tcp       0     deny
+2     2         prod_client         prod                          tcp       443   allow
+
+$ netctl policy rule-ls test_web-in
+Incoming Rules:
+Rule  Priority  From EndpointGroup  From Network  From IpAddress  Protocol  Port  Action
+----  --------  ------------------  ------------  ---------       --------  ----  ------
+1     1                             test          10.11.1.0/24    tcp       0     deny
+2     2         test_client         test                          tcp       80    allow
+3     3         test_client         test                          tcp       443   allow
+
+To test that the policy is working, we can try the following commands in client container and it should show that only port 80, 443 is exposed in “test” network and port 443 is exposed in “prod” network.
+
+nc -zvw 1 prod_web.prod.default 79-81
+nc -zvw 1 prod_web.prod.default 442-444
+
+nc -zvw 1 test_web.test.default 79-81
+nc -zvw 1 test_web.test.default 442-444
+
