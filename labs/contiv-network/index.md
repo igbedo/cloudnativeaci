@@ -51,6 +51,7 @@ default  contiv-net   data     vxlan       0           10.1.2.0/24   10.1.2.1
 ```
 We can now spin a couple of pods belonging to the contiv-net network. We will create one pod on the master node and one pod on the worker node. This will create a pod on the master node because we have specified tolerations in accordance with the master node's taints.
 
+```
 [vagrant@kubeadm-master ~]$ cat <<EOF > contiv-c1.yaml
 apiVersion: v1
 kind: Pod
@@ -74,8 +75,6 @@ spec:
       - sleep
       - "6000"
 EOF
-
-```
 
 [vagrant@kubeadm-master ~]$ kubectl create -f contiv-c1.yaml
 pod "contiv-c1" created
