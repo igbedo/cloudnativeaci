@@ -129,7 +129,6 @@ kube-system   kube-scheduler-ip-172-31-20-129            1/1     Running   0    
 ```
 
 
-
 ## Adding Nodes to the Cluster
 #### Step 0: Assumes Docker  have been deployed
 
@@ -140,10 +139,9 @@ sudo su -
 apt-get  update  &&  apt-get  install  -y  apt-transport-https
 
 curl  -s https://packages.cloud.google.com/apt/doc/apt-key.gpg |  apt-key  add  -
+
 cat  <<EOF >/etc/apt/sources.list.d/kubernetes.list
-
 deb http://apt.kubernetes.io/ kubernetes-xenial  main
-
 EOF
 
 apt-get  update
@@ -154,8 +152,9 @@ apt-get  install  -y  kubelet=1.11.3-00  kubeadm=1.11.3-00  kubectl
 
 ```
 kubeadm join 172.31.19.85:6443 --token ymbt8i.z3swtn1p03l26lbs --discovery-token-ca-cert-hash sha256:da310ad42c8c9d0dda6b3c036830d01c5898a517238f173c04a0fdfd054ed12a
-
+```
 #### Step 2: Run this from the master Node
+
 ```
 root@ip-172-31-19-85:~/contiv-1.1.7# kubectl get pods --all-namespaces
 NAMESPACE     NAME                                      READY   STATUS              RESTARTS   AGE
