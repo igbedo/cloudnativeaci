@@ -43,7 +43,7 @@ Lab 11: [Coniv Multi-node network](labs/contiv-network/index.md)
 
 Lab 12: [Coniv K8s Policies](labs/k8s-contiv-policies/index.md)
 
-Lab 13: [Contiv Docker Policies](labs/contiv-policies/index.md)
+Lab 13: [Contiv Policies Intro](labs/contiv-policies/index.md)
 
 Lab 14: [Contiv LB Service](http://contiv.github.io/documents/networking/services.html) --optional
 
