@@ -1,6 +1,6 @@
 ## Contiv Policies With Docker containers
 
-Contiv is an Open source project driven primarily by Cisco for policy based networking, storage and cluster management for containerized applications. In this blog, I will focus on how Contiv does policy based Container networking. In the next blog, I will cover some hands-on stuff that I tried with Contiv.
+Contiv is an Open source project driven primarily by Cisco for policy based networking, storage and cluster management for containerized applications. 
 
 ### Container Policy
 Policies have become critical to control the business logic in a Cloud environment. There are 2 ways to describe policy. In imperative model, policy is defined in terms of how the end goal is achieved. For example, we specify the filters and actions with Openflow protocol that achieves end goal of packet handling and this is an example of imperative model. In declarative model, policy is defined in terms of the end goal and it gives flexibility to the end-system to implement the policy in different ways. Congress and Opflex are examples of declarative policy model. With declarative model, it is possible to specify the policy in terms of business logic without specifying implementation detail. For example, the business logic can say that web container should not talk to database container. The implementation of this business logic can be achieved by having an iptables rule or by having a hardware tcam rule to block specific ports. In a cloud computing world, policies can be defined for compute, storage and networking. Both Containers and VM needs policies to implement business logic. Following are examples of some policies that can be applied to applications deployed in Cloud using either VMs or Containers:
@@ -135,7 +135,7 @@ docker run -ti --net c2.prod --name c2_1 --dns 20.1.1.2 smakam/myubuntu:v3 bash
 
 ```
 
-I have used “nginx” container for web service and “smakam/myubuntu:v3” container for client service. “smakam/myubuntu:v3” is inherited from “ubuntu” Container and it has network tools installed in addition.
+Note: The docker image “smakam/myubuntu:v3” is inherited from “ubuntu” Container  has network tools installed for testing.
 
 Let’s login to client Container “c1_1” and check that it is able to reach service “web1.test.default”. Following output shows that the ping request is getting load balanced between “web1_1.test.default” and “web1_2.test.default”.
 ```
