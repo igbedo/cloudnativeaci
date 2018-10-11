@@ -1,4 +1,4 @@
-## Contiv Policies With Docker containers
+## Contiv Policies Intro 
 
 Contiv is an Open source project driven primarily by Cisco for policy based networking, storage and cluster management for containerized applications. 
 
