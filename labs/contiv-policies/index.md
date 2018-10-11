@@ -33,23 +33,29 @@ contiv1
 
 Following are some notes on the Contiv Networking policy:
 
-The top level object is Tenant. Tenant can be a customer inside a cloud network or different groups within an single organization. Networks, policies and applications are defined under a Tenant.
-End point group(EPG) allows for grouping a set of applications which needs to have similar policies. For example, all web containers that are exposed to outside world need to open up “http” and “https” port. “Web” EPG can be defined to encapsulate all web containers and policy can be applied to “Web” EPG rather than applying the policy to individual Web containers. EPG is a Cisco construct that is being used also in Cisco ACI as well as in Openstack Group based policy.
-Workflow looks like this:
-Create Tenant, Network.
-Create Endpoint groups for container groupings.
-Create policy between Endpoint groups.
-Create application containers and tie them to the Endpoint group(EPG), Tenant and Network.
+* The top level object is Tenant. Tenant can be a customer inside a cloud network or different groups within an single organization. Networks, policies and applications are defined under a Tenant.
+
+* End point group(EPG) allows for grouping a set of applications which needs to have similar policies. For example, all web containers that are exposed to outside world need to open up “http” and “https” port. “Web” EPG can be defined to encapsulate all web containers and policy can be applied to “Web” EPG rather than applying the policy to individual Web containers. EPG is a Cisco construct that is being used also in Cisco ACI as well as in Openstack Group based policy.
+
+* Workflow looks like this:
+   * Create Tenant, Network.
+   * Create Endpoint groups for container groupings.
+   * Create policy between Endpoint groups.
+   * Create application containers and tie them to the Endpoint group(EPG), Tenant and Network.
+
 Contiv Networking policy can be specified using “netctl” tool or by a JSON file that is consumed by “contiv-compose” tool. “contiv-compose” tool is built on top of libcompose. Compose file has similar syntax as docker-compose YAML file.
 
 Following is an example of Contiv networking policy “p1” that contains 3 rules to block all incoming tcp ports other than port 80 and 443 from EPG “c1”.
 
+```
 netctl policy create p1
 netctl policy rule-add p1 1 -g c1 -n test -direction=in -protocol=tcp -action=deny
 netctl policy rule-add p1 2 -g c1 -n test -direction=in -protocol=tcp -port=80 -action=allow -priority=10
 netctl policy rule-add p1 3 -g c1 -n test -direction=in -protocol=tcp -port=443 -action=allow -priority=10
-Following is a sample policy specified as JSON file. The policy template language is still a work in progress within Contiv project. In the policy below, we define one tenant “io.contiv.tenant”. One user “vagrant” is defined who has access to “test” and “prod” networks. The user “vagrant” also has access to three policies “TrustApp”, “WebDefault”, “Websecure”. “TrustApp” policy trusts all ports exposed by the application. “WebDefault” exposes both “http” and “https” ports. “WebSecure” exposes only “https” port.
+```
 
+Following is a sample policy specified as JSON file. The policy template language is still a work in progress within Contiv project. In the policy below, we define one tenant “io.contiv.tenant”. One user “vagrant” is defined who has access to “test” and “prod” networks. The user “vagrant” also has access to three policies “TrustApp”, “WebDefault”, “Websecure”. “TrustApp” policy trusts all ports exposed by the application. “WebDefault” exposes both “http” and “https” ports. “WebSecure” exposes only “https” port.
+```
 {
 	"LabelMap`" : {
 		"Tenant" : "io.contiv.tenant",
@@ -80,3 +86,5 @@ Following is a sample policy specified as JSON file. The policy template languag
 		  "Rules": ["permit app"] }
 	]
 }
+
+```
