@@ -311,10 +311,9 @@ round-trip min/avg/max = 0.086/0.401/1.033 ms
 / # exit
 
 ```
-## Connecting pods to external networks
+## See the containers connectted to the network
 
-In order for pods to connect to external networks a gateway must be provided. When we created the contiv-net in the previous chapter we provided the gateway 10.1.2.1. Let's see if we can ping between one of the pods on the contiv-net and and external website. First let's see which pods are on contiv-net.
-
+Let's see which pods are on contiv-net.
 ```
 [vagrant@kubeadm-master ~]$ netctl net inspect contiv-net
 {
@@ -371,20 +370,5 @@ In order for pods to connect to external networks a gateway must be provided. Wh
   }
 }
 ```
-contiv-c1 and contiv-c2 are on contiv-net. Let's try to ping Google's DNS server.
-
-```
-[vagrant@kubeadm-master ~]$ kubectl exec -it contiv-c1 sh
-/ # ping -c 3 8.8.8.8
-PING 8.8.8.8 (8.8.8.8): 56 data bytes
-64 bytes from 8.8.8.8: seq=0 ttl=61 time=5.459 ms
-64 bytes from 8.8.8.8: seq=1 ttl=61 time=4.433 ms
-64 bytes from 8.8.8.8: seq=2 ttl=61 time=4.615 ms
-
---- 8.8.8.8 ping statistics ---
-3 packets transmitted, 3 packets received, 0% packet loss
-round-trip min/avg/max = 4.433/4.835/5.459 ms
-/ # exit
-
-```
+contiv-c1 and contiv-c2 are on contiv-net. 
 
