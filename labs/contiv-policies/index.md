@@ -5,9 +5,9 @@ Contiv is an Open source project driven primarily by Cisco for policy based netw
 ### Container Policy
 Policies have become critical to control the business logic in a Cloud environment. There are 2 ways to describe policy. In imperative model, policy is defined in terms of how the end goal is achieved. For example, we specify the filters and actions with Openflow protocol that achieves end goal of packet handling and this is an example of imperative model. In declarative model, policy is defined in terms of the end goal and it gives flexibility to the end-system to implement the policy in different ways. Congress and Opflex are examples of declarative policy model. With declarative model, it is possible to specify the policy in terms of business logic without specifying implementation detail. For example, the business logic can say that web container should not talk to database container. The implementation of this business logic can be achieved by having an iptables rule or by having a hardware tcam rule to block specific ports. In a cloud computing world, policies can be defined for compute, storage and networking. Both Containers and VM needs policies to implement business logic. Following are examples of some policies that can be applied to applications deployed in Cloud using either VMs or Containers:
 
-### Authorization policy – Specifies tenants and their privileges.
-Resource usage policy – Specifies resource constraints for tenants, containers and VMs.
-Application access policy – Specifies containers that can communicate to each other and containers that are exposed to outside world.
+ *Authorization policy – Specifies tenants and their privileges.
+ *Resource usage policy – Specifies resource constraints for tenants, containers and VMs.
+ *Application access policy – Specifies containers that can communicate to each other and containers that are exposed to outside world.
 
 ## Contiv Networking
 Contiv Networking project provides policy based networking for Docker Containers. Following are some details on Contiv Networking:
