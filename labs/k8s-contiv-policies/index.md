@@ -9,7 +9,7 @@ Creating tenant: TestTenant
 
 Create a network under this tenant.
 
-[vagrant@kubeadm-master ~]$ netctl network create --tenant TestTenant --subnet=10.1.1.0/24 --gateway=10.1.1.254 -e "vlan" TestNet
+[vagrant@kubeadm-master ~]$ netctl network create --tenant TestTenant --subnet=10.1.1.0/24 --gateway=10.1.1.254 -e "vxlan" TestNet
 Creating network TestTenant:TestNet
 ```
 We can see the networks that are present within the cluster.
