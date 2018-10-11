@@ -36,10 +36,10 @@ Lab 9: [Kubernetes Networking](https://github.com/igbedo/kubernetes-lab-tutorial
 
 ### Labs 
 
-Lab 10: [Deploy Kubernetes with kubeadm and Contiv CNI]()
+Lab 10: [Deploy Kubernetes with kubeadm and Contiv CNI](labs/contiv-deploy-labs/index.md)
 
 
-Lab 11: [Coniv Multi-node network](labs/04-pods)
+Lab 11: [Coniv Multi-node network](labs/contiv-network/index.md)
 
 Lab 12: [Contiv Policies](labs/05-multi)
 
