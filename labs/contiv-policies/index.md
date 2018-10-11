@@ -13,19 +13,22 @@ Policies have become critical to control the business logic in a Cloud environme
 Contiv Networking project provides policy based networking for Docker Containers. Following are some details on Contiv Networking:
 
 
-There are two primary components of Contiv: Contiv netplugin is implemented as a Docker networking plugin and sits on every Docker host. Contiv netmaster runs centrally as a cluster which consumes the policy and provides REST api to the outside world.
-Contiv netplugin can also work with Container schedulers like Kubernetes, Swarm, Mesos.
-Openvswitch is used to implement network policy with Openflow based pipeline. This allows for Contiv to have a flexible policy as well as a performance oriented solution.
-Networking can be provided using pure L3, pure L2 or using Overlays based on the underlying network.
-Policies are specified in terms of business logic using right abstractions rather than using Networking language.
-Multi-tenant support is available.
-Contiv provides integration with Cisco ACI fabric. This allows for ACI fabric to implement Contiv policy. This is still in preliminary stages.
-Service discovery is integrated.
-“netctl” is the CLI frontend provided by Contiv to interact with Contiv master.
-“contiv-compose” can be used to automate policy deployment. This is still in the early stages.
-Contiv Networking policy
+* There are two primary components of Contiv: Contiv netplugin is implemented as a Docker networking plugin and sits on every Docker host. Contiv netmaster runs centrally as a cluster which consumes the policy and provides REST api to the outside world.
+
+* Contiv netplugin can also work with Container schedulers like Kubernetes, Swarm, Mesos.
+* Openvswitch is used to implement network policy with Openflow based pipeline. This allows for Contiv to have a flexible policy as well as a performance oriented solution.
+* Networking can be provided using pure L3, pure L2 or using Overlays based on the underlying network.
+* Policies are specified in terms of business logic using right abstractions rather than using Networking language.
+* Multi-tenant support is available.
+* Contiv provides integration with Cisco ACI fabric. This allows for ACI fabric to implement Contiv policy. This is still in preliminary stages.
+* Service discovery is integrated.
+* “netctl” is the CLI frontend provided by Contiv to interact with Contiv master.
+* “contiv-compose” can be used to automate policy deployment. This is still in the early stages.
+
+### Contiv Networking policy
 Contiv networking policy is specified in terms of business logic rather than Networking constraints. The policy is targeted towards clear division of responsibilities between Development and Operation teams.  Following picture from Contiv website illustrates the Contiv Networking policy model:
 
+Markup : ![picture alt](/labs/contiv1.png "Title is optional")
 contiv1
 
 Following are some notes on the Contiv Networking policy:
