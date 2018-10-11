@@ -19,7 +19,7 @@ Tenant      Network      Nw Type  Encap type  Packet tag  Subnet        Gateway 
 ------      -------      -------  ----------  ----------  -------       ------      ----------  -----------  ---------
 default     default-net  data     vxlan       0           20.1.1.0/24   20.1.1.1
 ...
-TestTenant  TestNet      data     vlan        0           10.1.1.0/24   10.1.1.254
+TestTenant  TestNet      data     vxlan        0           10.1.1.0/24   10.1.1.254
 default     contivh1     infra    vxlan       0           132.1.1.0/24  132.1.1.1
 ```
 Now create two network groups under network TestNet.
@@ -245,7 +245,7 @@ So, let's create a tenant, a network and group "A" under the network.
 ```
 [vagrant@kubeadm-master ~]$ netctl tenant create BandwidthTenant
 Creating tenant: BandwidthTenant
-[vagrant@kubeadm-master ~]$ netctl network create --tenant BandwidthTenant --subnet=50.1.1.0/24 --gateway=50.1.1.254 -p 1001 -e "vlan" BandwidthTestNet
+[vagrant@kubeadm-master ~]$ netctl network create --tenant BandwidthTenant --subnet=50.1.1.0/24 --gateway=50.1.1.254 -p 1001 -e "vxlan" BandwidthTestNet
 Creating network BandwidthTenant:BandwidthTestNet
 [vagrant@kubeadm-master ~]$ netctl group create -t BandwidthTenant BandwidthTestNet epgA
 Creating EndpointGroup BandwidthTenant:epgA
@@ -254,8 +254,8 @@ Creating EndpointGroup BandwidthTenant:epgA
 Tenant           Network           Nw Type  Encap type  Packet tag  Subnet        Gateway     IPv6Subnet  IPv6Gateway  Cfgd Tag
 ------           -------           -------  ----------  ----------  -------       ------      ----------  -----------  ---------
 ...
-TestTenant       TestNet           data     vlan        0           10.1.1.0/24   10.1.1.254
-BandwidthTenant  BandwidthTestNet  data     vlan        1001        50.1.1.0/24   50.1.1.254
+TestTenant       TestNet           data     vxlan        0           10.1.1.0/24   10.1.1.254
+BandwidthTenant  BandwidthTestNet  data     vxlan        1001        50.1.1.0/24   50.1.1.254
 ...
 
 [vagrant@kubeadm-master ~]$ netctl group ls -a
