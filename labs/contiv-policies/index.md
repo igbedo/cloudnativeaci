@@ -1,4 +1,4 @@
-## Contiv Policies
+## Contiv Policies With Docker containers
 
 Contiv is an Open source project driven primarily by Cisco for policy based networking, storage and cluster management for containerized applications. In this blog, I will focus on how Contiv does policy based Container networking. In the next blog, I will cover some hands-on stuff that I tried with Contiv.
 
@@ -191,7 +191,7 @@ nc: connect to web2.prod.default port 444 (tcp) timed out: Operation now in prog
 nc: connect to web2.prod.default port 444 (tcp) timed out: Operation now in progress
 ```
 Let’s look at tenants, networks, epgs, policies created using netctl:
-
+```
 $ netctl tenant ls
 Name     
 ------   
@@ -231,12 +231,12 @@ Rule  Priority  From EndpointGroup  From Network  From IpAddress  Protocol  Port
 1     1                             test          10.11.1.0/24    tcp       0     deny
 2     2         test_client         test                          tcp       80    allow
 3     3         test_client         test                          tcp       443   allow
-
+```
 To test that the policy is working, we can try the following commands in client container and it should show that only port 80, 443 is exposed in “test” network and port 443 is exposed in “prod” network.
-
+```
 nc -zvw 1 prod_web.prod.default 79-81
 nc -zvw 1 prod_web.prod.default 442-444
 
 nc -zvw 1 test_web.test.default 79-81
 nc -zvw 1 test_web.test.default 442-444
-
+```
