@@ -30,6 +30,20 @@ Lab 7: [Deploy Kubernetes Pods](labs/04-pods)
 
 Lab 8: [Deploy Multi-container application](labs/05-multi)
 
-Lab 8: [Kubernetes Networking](https://github.com/igbedo/kubernetes-lab-tutorial/blob/master/content/network.md#pod-networking)
+Lab 9: [Kubernetes Networking](https://github.com/igbedo/kubernetes-lab-tutorial/blob/master/content/network.md#pod-networking)
+
+## Day 3
+
+### Labs 
+
+Lab 10: [Deploy Kubernetes with kubeadm and Contiv CNI]()
+
+
+Lab 11: [Coniv Multi-node network](labs/04-pods)
+
+Lab 12: [Contiv Policies](labs/05-multi)
+
+
+
 
 
