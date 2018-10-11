@@ -110,21 +110,9 @@ root@ip-172-31-19-85:~/contiv-1.1.7#
 ```
 kubectl run nginx --image-nginx
 
-root@ip-172-31-20-129:~/contiv-1.1.7# kubectl get pods --all-namespaces
+root@ip-172-31-20-129:~/contiv-1.1.7# kubectl get pods 
 NAMESPACE     NAME                                       READY   STATUS    RESTARTS   AGE
 default       nginx-64f497f8fd-xx54w                     1/1     Running   0          33m
-kube-system   contiv-etcd-2vbdj                          1/1     Running   0          38m
-kube-system   contiv-netmaster-55jjj                     3/3     Running   0          38m
-kube-system   contiv-netplugin-cg8tq                     2/2     Running   0          15m
-kube-system   contiv-netplugin-pl54p                     2/2     Running   0          38m
-kube-system   coredns-78fcdf6894-nv258                   1/1     Running   0          42m
-kube-system   coredns-78fcdf6894-pn9l4                   1/1     Running   0          42m
-kube-system   etcd-ip-172-31-20-129                      1/1     Running   0          41m
-kube-system   kube-apiserver-ip-172-31-20-129            1/1     Running   0          41m
-kube-system   kube-controller-manager-ip-172-31-20-129   1/1     Running   0          41m
-kube-system   kube-proxy-b8wpt                           1/1     Running   0          42m
-kube-system   kube-proxy-r5s9z                           1/1     Running   0          15m
-kube-system   kube-scheduler-ip-172-31-20-129            1/1     Running   0          41m
 
 ```
 
@@ -193,20 +181,4 @@ kube-system   kube-proxy-v8kth                          1/1     Running   0     
 kube-system   kube-scheduler-ip-172-31-19-85            1/1     Running   0          24m
 
 ```
-
-
-root@ip-172-31-18-91:~/contiv-1.1.7# kubectl get pods --all-namespaces
-NAMESPACE     NAME                                      READY   STATUS              RESTARTS   AGE
-kube-system   contiv-etcd-7nfvf                         1/1     Running             0          7m
-kube-system   contiv-netmaster-j4khn                    3/3     Running             0          7m
-kube-system   contiv-netplugin-tzv8w                    2/2     Running             0          6m
-kube-system   coredns-78fcdf6894-dz6dl                  0/1     ContainerCreating   0          33m
-kube-system   coredns-78fcdf6894-zd7rm                  0/1     ContainerCreating   0          33m
-kube-system   etcd-ip-172-31-18-91                      1/1     Running             0          32m
-kube-system   kube-apiserver-ip-172-31-18-91            1/1     Running             0          32m
-kube-system   kube-controller-manager-ip-172-31-18-91   1/1     Running             0          32m
-kube-system   kube-proxy-l95th                          1/1     Running             0          33m
-kube-system   kube-scheduler-ip-172-31-18-91            1/1     Running             0          32m
-
-
 
