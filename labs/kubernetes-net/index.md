@@ -171,9 +171,11 @@ Without specifying the type of service, kubernetes by default uses the Type: Clu
 
 When creating a service, kubernetes provides different options of service types:
 
-    ClusterIP: it exposes the service only on a cluster internal IP making the service only reachable from within the cluster. This is the default service type.
-    NodePort: it exposes the service on each node public IP on a static port as defined in the NodePort option. It will be possible to access the service, from outside the cluster.
-    LoadBalancer: it exposes the service by creating an external load balancer. It works only on some public cloud providers. To make this working, remember to set the option --cloud-provider in the kube controller manager startup file.
+ClusterIP: it exposes the service only on a cluster internal IP making the service only reachable from within the cluster. This is the default service type.
+
+NodePort: it exposes the service on each node public IP on a static port as defined in the NodePort option. It will be possible to access the service, from outside the cluster.
+    
+LoadBalancer: it exposes the service by creating an external load balancer. It works only on some public cloud providers. To make this working, remember to set the option --cloud-provider in the kube controller manager startup file.
 
 In this section we are going to use the NodePort service type to expose the service.
 
