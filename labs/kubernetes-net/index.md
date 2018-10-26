@@ -8,13 +8,13 @@ Kubernetes creates a cleaner model where pods can be treated much like virtual m
 
 In the following sections we're going into a walk-through in kubernetes networking
 
-    (#Pod-Networking)
+    Pod Networking
     Exposing services
     Service discovery
     Accessing services
     External services
 
-#### #Pod-Networking
+#### Pod Networking
 
 In a kubernetes cluster, when a pod is deployed, it gets an IP address from the cluster IP address range defined in the inital setup.
 
@@ -259,7 +259,9 @@ NAME            TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        A
 service/nginx   LoadBalancer   10.32.108.201   104.155.43.158   80:30473/TCP   40m    run=nginx
 ```
 By accessing the load balancer frontend on its public own IP and port 80, a client's request will be forwarded to the nginx pods passing through the service node port 30473. The service type LoadBalancer is quite expensive because, a separate load balancer will be created for each exposed service.
-Service discovery
+
+
+#### Service discovery
 
 To enable service name discovery in a kubernetes cluster, we need to configure an embedded DNS service to resolve all DNS queries from pods trying to access services. The embedded DNS should be manually installed during cluster setup since it is part of the cluster architecture, unless users are going to use other custom solutions for service discovery.
 
@@ -357,7 +359,8 @@ Address 2: 10.38.2.6
 Address 3: 10.38.2.7
 ```
 We see the DNS server responding with the pod's IP addresses.
-Accessing services
+
+#### Accessing services
 
 In this section, we're going to deploy a WordPress application made of two services:
 
