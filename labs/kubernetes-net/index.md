@@ -8,11 +8,11 @@ Kubernetes creates a cleaner model where pods can be treated much like virtual m
 
 In the following sections we're going into a walk-through in kubernetes networking
 
-    Pod Networking
-    Exposing services
-    Service discovery
-    Accessing services
-    External services
+ ##### Pod Networking
+ ##### Exposing services
+ ##### Service discovery
+ ##### Accessing services
+ ##### External services
 
 #### Pod Networking
 
