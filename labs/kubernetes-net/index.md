@@ -1,4 +1,4 @@
-###Cluster Networking
+### Cluster Networking
 
 Kubernetes assumes that pods can communicate with other pods in the cluster, no matter of which host they land on. In a kubernetes cluster, every pod has its own IP address, so the cluster administrator does not need to create links between pods and never needs to deal with mapping container address to host address.
 
@@ -15,7 +15,7 @@ In the following sections we're going into a walk-through in kubernetes networki
     External services
     Network Policies
 
-####Pod Networking
+#### Pod Networking
 
 In a kubernetes cluster, when a pod is deployed, it gets an IP address from the cluster IP address range defined in the inital setup.
 
@@ -71,7 +71,7 @@ Both pods run on the same host node, as we see from their IP address. We can sti
 ```
 We do not need to expose container port on host to access nginx application as it is required in standard docker networking model.
 
-####Host Networking
+#### Host Networking
 
 As alternative, we can define pods to use the same host IP address as defined in the nodejs-pod-hostnet.yaml configuration file
 ```
@@ -101,7 +101,7 @@ nodejs        1/1       Running   0          5m        10.10.10.83  kubew03
 ```
 However, with the hostNetwork: true we cannot start more than one pod listening on the same host port. In general, pods with host network are only used for system or daemon applications that do not need to be scaled.
 
-####Exposing services
+#### Exposing services
 
 In kubernetes, services are used not only to provides access to other pods inside the same cluster but also to clients outside the cluster. In this section, we're going to create a deploy of two nginx replicas and expose them to the external world via a nginx service.
 
