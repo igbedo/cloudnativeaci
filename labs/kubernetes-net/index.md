@@ -8,14 +8,13 @@ Kubernetes creates a cleaner model where pods can be treated much like virtual m
 
 In the following sections we're going into a walk-through in kubernetes networking
 
-    Pod Networking
+    (#Pod-Networking)
     Exposing services
     Service discovery
     Accessing services
     External services
-    Network Policies
 
-#### Pod Networking
+#### (Pod-Networking)
 
 In a kubernetes cluster, when a pod is deployed, it gets an IP address from the cluster IP address range defined in the inital setup.
 
@@ -607,7 +606,7 @@ Length: unspecified [text/html]
 Saving to: ‘index.html’
 2017-04-25 18:01:18 (3.45 MB/s) - ‘index.html’ saved [51713]
 ```
-External Services
+#### External Services
 
 The service abstraction in kubernetes can be used to model also external services that are not part of the cluster. For example, a pre-existing Oracle database can be modeled as a common standard service to be accessed from an application running in the cluster as pod. In this section, we are going to model an external MySQL database running on a remote machine with a given IP address. The only requirement is the worker nodes should be able to reach the address of the external database.
 
