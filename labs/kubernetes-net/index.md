@@ -634,8 +634,9 @@ kubectl create -f mysql-external-svc.yaml
 kubectl get services external-mysql -o wide
 NAME             CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE       SELECTOR
 external-mysql   10.32.107.128   <none>        3306/TCP   41m       <none>
-``
+```
 By inspecting the service, we find that no endpoints are available since it is an headless service. The endpoints need to be manually created as in the mysql-external-ep.yaml configuration file
+
 ```
 apiVersion: v1
 kind: Endpoints
@@ -652,6 +653,7 @@ subsets:
 The IP address above is the actual IP address of the MySQL server running outside the kubernetes cluster.
 
 To test the external MySQL server is modeled as an internal service in kubernetes, start a simple MySQL client running in a pod and connect to the external database by specifying the name of the external service as it is discovered by the embedded DNS in kubernetes
+
 ```
 kubectl run -it --rm ephemeral --image=mysql -- /bin/sh -l
 sh-4.2 $ mysql -h external-mysql -u root -p
