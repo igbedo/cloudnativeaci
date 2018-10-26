@@ -38,12 +38,11 @@ Lab 9: [Kubernetes Networking](labs/kubernetes-net/index.md)
 
 Lab 10: [Deploy Kubernetes with kubeadm and Contiv CNI](labs/contiv-deploy-labs/index.md)
 
-
 Lab 11: [Coniv Multi-node network](labs/contiv-network/index.md)
 
-Lab 12: [Coniv K8s Policies](labs/k8s-contiv-policies/index.md)
+Lab 12: [Contiv Policies Intro](labs/contiv-policies/index.md)
 
-Lab 13: [Contiv Policies Intro](labs/contiv-policies/index.md)
+Lab 13: [Coniv K8s Policies](labs/k8s-contiv-policies/index.md)
 
 Lab 14: [Contiv LB Service](http://contiv.github.io/documents/networking/services.html) --optional
 
